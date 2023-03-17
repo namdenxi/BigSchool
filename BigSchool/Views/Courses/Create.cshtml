@@ -1,0 +1,34 @@
+﻿@model BigSchool.ViewModels.CourseViewlModel
+@{
+    ViewBag.Title = "Create Course";
+}
+<h3>Create Course</h3>
+@using (Html.BeginForm("Create", "Courses"))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.LabelFor(m => m.Place)
+        @Html.TextBoxFor(m => m.Place, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Place, "", new { @class = "text-danger" })
+    </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Date)
+            @Html.TextBoxFor(m => m.Date, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Date, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Time)
+            @Html.TextBoxFor(m => m.Time, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Time, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Category)
+            @Html.DropDownListFor(m => m.Category, new SelectList(Model.Categories, "ID", "Name"), "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Category, "", new { @class = "text-danger" })
+        </div>
+        <button type="submit" value="Save" class="btn btn-primary">Save</button>
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/jquery")
+}
